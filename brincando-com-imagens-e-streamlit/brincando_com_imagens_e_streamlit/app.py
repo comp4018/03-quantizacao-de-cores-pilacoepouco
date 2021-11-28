@@ -105,6 +105,7 @@ if uploaded_file is not None:
     # st.write(image_aux_arr.astype)
     st.image(image_aux)
 
+   
 
     # elif(option == 'Transformação em (log)'):
         
@@ -120,10 +121,10 @@ if uploaded_file is not None:
     #         image = Image.fromarray(image).convert('L')
 
     # image_aux
-    # option = st.sidebar.selectbox(
-    #     'Qual o nível de cores?',
-    #     (2, 4, 8, 16, 32, 64, 128, 192, 256),
-    # )
+    option = st.sidebar.selectbox(
+         'Qual o nível de cores?',
+        (2, 4, 8, 16),
+    )
 
     # image_aux = np.copy(image_gray_corr)
     # if option == 2:
@@ -146,3 +147,9 @@ if uploaded_file is not None:
 
     # st.image(image_aux)    
     
+    def quantizacao(valor):
+        quant = 256 / valor
+        image_aux[ image_aux > (256 - quant)] = 255
+        for x in range(1,valor):
+            image_aux[ image_aux > (256 - quant)] = 255
+
